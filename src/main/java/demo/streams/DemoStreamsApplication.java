@@ -11,15 +11,11 @@ import org.springframework.messaging.Message;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import reactor.core.scheduler.Scheduler;
-import reactor.core.scheduler.Schedulers;
 import reactor.kafka.receiver.ReceiverOffset;
 
 @SpringBootApplication
 @Slf4j
 public class DemoStreamsApplication {
-
-  private static final Scheduler SCHEDULER = Schedulers.newSingle("MEH");
 
   public static void main(String[] args) {
     SpringApplication.run(DemoStreamsApplication.class, args);
