@@ -1,0 +1,68 @@
+spring:
+  cloud:
+    function:
+      autodetect: false
+      definition: test
+    stream:
+      bindings:
+        test-in-0:
+          destination: test
+          binder: reactorKafka
+          group: scs-test-group
+        test-out-0:
+          destination: test
+          producer:
+            use-native-encoding: true
+          binder: kafka
+      kafka:
+        binder:
+          enable-observation: true
+          auto-create-topics: false
+          brokers: localhost:9092
+          consumer-properties:
+            schema:
+              registry:
+                url: http://localhost:8081
+          producer-properties:
+            schema:
+              registry:
+                url: http://localhost:8081
+        bindings:
+          test-in-0:
+            consumer:
+              ack-mode: manual
+              configuration:
+                max:
+                  poll:
+                    records: 1
+                key:
+                  deserializer: org.apache.kafka.common.serialization.StringDeserializer
+                specific:
+                  avro:
+                    reader: true
+                value:
+                  deserializer: org.apache.kafka.common.serialization.StringDeserializer
+              start-offset: earliest
+          test-out-0:
+            producer:
+              configuration:
+                key:
+                  serializer: org.apache.kafka.common.serialization.StringSerializer
+                value:
+                  serializer: org.apache.kafka.common.serialization.StringSerializer
+                enable.idempotence: true
+                acks: all
+                max.in.flight.requests.per.connection: 5
+              sync: true
+management:
+  server:
+    port: 9063
+
+logging:
+  level:
+    tracer: trace
+    org.apache.kafka.clients.consumer.KafkaConsumer: DEBUG
+    org.apache.kafka.clients.internals.ConsumerCoordinator: DEBUG
+    reactor.kafka.receiver.internals.ConsumerEventLoop: DEBUG
+    reactor.kafka.receiver.internals.CommittableBatch: TRACE
+    org.springframework.kafka.listener: DEBUG
