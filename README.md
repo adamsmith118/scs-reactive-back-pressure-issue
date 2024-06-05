@@ -4,6 +4,8 @@
 
 Parity in how back pressure is handled when using the SCS ReactorKafkaBinder and ReactorKafka directly.
 
+If this isn't expected, guidance on how to achieve parity would be appreciated.
+
 # Actual behaviour
 
 Consider two consumer implementations performing identical tasks; a simulation of some work followed by a WebClient call.
