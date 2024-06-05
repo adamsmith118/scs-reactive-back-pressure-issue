@@ -115,10 +115,9 @@ Presumably something in the binder/channel implementation is causing this?
 
 Requires a Kafka on localhost:9092 and a topic called "test".
 
-`Producer` class in test will send 100 messages.
-
-`demo.reactor.DemoReactorApp` - Pure Reactor Kafka example
-`demo.streams.DemoStreamsApplication` - Spring Cloud Streams example
+* `Producer` class in test will send 100 messages.
+* `demo.reactor.DemoReactorApp` - Pure Reactor Kafka example
+* `demo.streams.DemoStreamsApplication` - Spring Cloud Streams example
 
 DEBUG logging has been enabled for the `ConsumerEventLoop` for emit visibility.
 
