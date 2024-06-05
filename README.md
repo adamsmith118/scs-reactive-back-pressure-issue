@@ -100,7 +100,8 @@ r.k.r.internals.ConsumerEventLoop        : Emitting 1 records, requested now 0
 <snip>
 ```
 
-This causes problems if a rebalance occurs during a period of heavy load as the pipeline can contain 100's of pending records.  We'd need to set an intolerably high maxDelayRebalance to get through them all.
+This causes problems if a rebalance occurs during a period of heavy load as the pipeline can contain 100's of pending records.  
+We'd need to set an intolerably high maxDelayRebalance to get through them all.  The net result is quite a lot of duplicate records.
 
 Logs resembling the below are visible.
 
